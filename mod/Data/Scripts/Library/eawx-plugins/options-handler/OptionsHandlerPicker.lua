@@ -51,9 +51,17 @@ function OptionsHandlerPicker:get_options_handler()
     end
     self.cheats_applied = false
 
-    local result = self:pick_x5()
+    local success, result
 
-    if result then
+    -- Try to pick X.6 handler with pcall
+    success, result = pcall(self.pick_x6, self)
+    if success and result then
+        return result
+    end
+
+    --Try to pick X.5 handler with pcall
+    success, result = pcall(self.pick_x5, self)
+    if success and result then
         return result
     end
 
@@ -78,6 +86,24 @@ function OptionsHandlerPicker:pick_x5()
     elseif Find_Object_Type("rev") then
         -- Revan's Revenge 0.5
         self.OptionsHandler = OptionsHandler(self.gc, self.gc.HumanPlayer)
+    end
+    if self.enabled_cheats then
+        self:enable_cheats()
+    end
+    return self.OptionsHandler
+end
+
+---Picks and initializes the appropriate X.6 version based on the mod
+---@return OptionsHandler|nil
+function OptionsHandlerPicker:pick_x6()
+    self.version = 6
+    -- Placeholder for future X6 handlers
+    if Find_Object_Type("icw") then
+        -- Imperial Civil War (Thrawn's Revenge) 3.6
+    elseif Find_Object_Type("fotr") then
+        -- Fall of the Republic 1.6
+    elseif Find_Object_Type("rev") then
+        -- Revan's Revenge 0.6
     end
     if self.enabled_cheats then
         self:enable_cheats()
