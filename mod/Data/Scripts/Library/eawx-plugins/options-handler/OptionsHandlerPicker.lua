@@ -111,6 +111,24 @@ function OptionsHandlerPicker:pick_x6()
     return self.OptionsHandler
 end
 
+---Picks and initializes the appropriate X.7 version based on the mod
+---@return OptionsHandler|nil
+function OptionsHandlerPicker:pick_x7()
+    self.version = 7
+    -- Placeholder for future X7 handlers
+    if Find_Object_Type("icw") then
+        -- Imperial Civil War (Thrawn's Revenge) 3.7
+    elseif Find_Object_Type("fotr") then
+        -- Fall of the Republic 1.7
+    elseif Find_Object_Type("rev") then
+        -- Revan's Revenge 0.7
+    end
+    if self.enabled_cheats then
+        self:enable_cheats()
+    end
+    return self.OptionsHandler
+end
+
 ---Attempts to re-subscribe the OptionsHandler AI init event
 function OptionsHandlerPicker:resubscribe_ai()
     if not self.OptionsHandler then
