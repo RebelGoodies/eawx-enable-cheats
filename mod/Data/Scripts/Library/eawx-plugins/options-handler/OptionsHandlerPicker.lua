@@ -74,6 +74,7 @@ function OptionsHandlerPicker:pick_x5()
     elseif Find_Object_Type("fotr") then
         -- Fall of the Republic 1.5
         self.OptionsHandler = OptionsHandler(self.gc, self.id, self.gc_name)
+        self:resubscribe_ai()
     elseif Find_Object_Type("rev") then
         -- Revan's Revenge 0.5
         self.OptionsHandler = OptionsHandler(self.gc, self.gc.HumanPlayer)
@@ -82,6 +83,23 @@ function OptionsHandlerPicker:pick_x5()
         self:enable_cheats()
     end
     return self.OptionsHandler
+end
+
+---Attempts to re-subscribe the OptionsHandler AI init event
+function OptionsHandlerPicker:resubscribe_ai()
+    if not self.OptionsHandler then
+        return
+    end
+    --Re-subscribe to AI initialization event without error protection
+    if type(self.OptionsHandler.activate_normal_ai) == "function" then
+        -- X.5+ method
+        crossplot:unsubscribe("INITIALIZE_AI", self.OptionsHandler.activate_normal_ai, self.OptionsHandler)
+        crossplot:subscribe("INITIALIZE_AI", self.OptionsHandler.activate_normal_ai, self.OptionsHandler, false)
+    elseif type(self.OptionsHandler.activate_ai) == "function" then
+        -- Pre X.5 method
+        crossplot:unsubscribe("INITIALIZE_AI", self.OptionsHandler.activate_ai, self.OptionsHandler)
+        crossplot:subscribe("INITIALIZE_AI", self.OptionsHandler.activate_ai, self.OptionsHandler, false)
+    end
 end
 
 return OptionsHandlerPicker
