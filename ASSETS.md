@@ -13,8 +13,8 @@ It **does not** apply to:
 
 ## Dependency on EaWX
 
-This submod is designed to be used **alongside EaWX mods** and depends on content provided by EaWX.
-It includes only the files necessary for the submod to function when used with the base mod.
+This submod depends on content provided by EaWX and is not intended to function standalone.
+It includes only the files necessary to operate when used with the EaWX base mod.
 
 Please see the `faq-and-info` channel on their official Discord for their usage policies.
 
