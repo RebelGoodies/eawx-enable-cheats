@@ -5,6 +5,8 @@ return {
     type = "plugin",
     target = PluginTargets.never(),
     init = function(self, ctx)
-        return OptionsHandler(ctx.galactic_conquest, ctx.id, ctx.gc_name)
+        local galactic_conquest = ctx.galactic_conquest
+        return OptionsHandler(galactic_conquest, galactic_conquest.HumanPlayer)
     end
 }
+ 
