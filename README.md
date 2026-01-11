@@ -1,5 +1,7 @@
 **Disclaimer**: This project is not affiliated with the EaWX team.
 
+![Splash image](mod/Splash.png)
+
 # eawx-enable-cheats
 
 Simply enables built in cheats for any EaWX mod.
