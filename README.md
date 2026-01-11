@@ -1,6 +1,6 @@
-<img src="mod/Splash.png" alt="Splash" width="128" style="float: right; margin-left: 1em; margin-bottom: 1em;">
-
 **Disclaimer**: This project is not affiliated with the EaWX team.
+
+<img src="mod/Splash.png" alt="Splash" width="128" style="float: right; margin-left: 1em; margin-bottom: 1em;">
 
 # eawx-enable-cheats
 
