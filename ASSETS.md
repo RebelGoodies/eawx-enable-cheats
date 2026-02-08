@@ -30,6 +30,7 @@ Per the EaWX team's published policies (summary):
 * A reasonable effort should be made to include only necessary files.
 * Submods should clearly state they are not affiliated with the EaWX team.
 * EaWX content may be rearranged or referenced *within the EaWX ecosystem*.
+* **The EaWX team does not permit the advertisement or sale of submods for money.**
 
 ### Use of EaWX content outside EaWX
 
