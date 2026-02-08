@@ -4,9 +4,12 @@
 
 # eawx-enable-cheats
 
-Simply enables built in cheats for any EaWX mod.
+Enable built-in cheats for any EaWX mod, available in the *advanced options* tab.
 
-## Cheats
+## Cheat Options
+
+To be clear, all these cheats are already in the EaWX mods (hidden by default).
+This convenience plugin instantiates the appropriate options handler, instead of having to manually edit the file.
 
 | Cheat Name            | Description |
 |-----------------------|-------------|
@@ -25,9 +28,12 @@ Simply enables built in cheats for any EaWX mod.
 
 ## Supported Mods
 
-- Thrawn's Revenge (TR) **3.5**
-- Fall of the Republic (FotR) **1.5**
-- Revan's Revenge (RR) **0.5**
+- [Thrawn's Revenge](https://steamcommunity.com/sharedfiles/filedetails/?id=1125571106)
+  **3.5**
+- [Fall of the Republic](https://steamcommunity.com/sharedfiles/filedetails/?id=1976399102)
+  **1.5**
+- [Revan's Revenge](https://steamcommunity.com/sharedfiles/filedetails/?id=3417277973)
+  **0.5**
 
 # License
 
