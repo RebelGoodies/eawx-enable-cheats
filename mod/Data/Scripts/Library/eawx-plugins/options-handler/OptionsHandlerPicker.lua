@@ -54,7 +54,7 @@ function OptionsHandlerPicker:get_options_handler()
     local success, result
 
     -- Try to pick X.6 handler with pcall
-    success, result = pcall(self.pick_x6, self)
+    success, result = pcall(self.pick_x0, self)
     if success and result then
         return result
     end
@@ -72,7 +72,7 @@ function OptionsHandlerPicker:get_options_handler()
     return nil
 end
 
----Picks and initializes the appropriate X.5 version based on the mod
+---Picks and initializes the appropriate X.5 (older) version based on the mod
 ---@return OptionsHandler|nil
 function OptionsHandlerPicker:pick_x5()
     self.version = 5
@@ -93,17 +93,17 @@ function OptionsHandlerPicker:pick_x5()
     return self.OptionsHandler
 end
 
----Picks and initializes the appropriate X.6 version based on the mod
+---Picks and initializes the appropriate X.0 (newer) version based on the mod
 ---@return OptionsHandler|nil
-function OptionsHandlerPicker:pick_x6()
-    self.version = 6
-    -- Placeholder for future X6 handlers
+function OptionsHandlerPicker:pick_x0()
+    self.version = 0
+    -- Placeholder for future X0 handlers
     if Find_Object_Type("icw") then
-        -- Imperial Civil War (Thrawn's Revenge) 3.6
+        -- Imperial Civil War (Thrawn's Revenge) 4.6
     elseif Find_Object_Type("fotr") then
-        -- Fall of the Republic 1.6
+        -- Fall of the Republic 2.6
     elseif Find_Object_Type("rev") then
-        -- Revan's Revenge 0.6
+        -- Revan's Revenge 1.6
     end
     if self.enabled_cheats then
         self:enable_cheats()
@@ -111,17 +111,17 @@ function OptionsHandlerPicker:pick_x6()
     return self.OptionsHandler
 end
 
----Picks and initializes the appropriate X.7 version based on the mod
+---Picks and initializes the appropriate X.1 version based on the mod
 ---@return OptionsHandler|nil
-function OptionsHandlerPicker:pick_x7()
-    self.version = 7
-    -- Placeholder for future X7 handlers
+function OptionsHandlerPicker:pick_x1()
+    self.version = 1
+    -- Placeholder for future X1 handlers
     if Find_Object_Type("icw") then
-        -- Imperial Civil War (Thrawn's Revenge) 3.7
+        -- Imperial Civil War (Thrawn's Revenge) 4.1
     elseif Find_Object_Type("fotr") then
-        -- Fall of the Republic 1.7
+        -- Fall of the Republic 2.1
     elseif Find_Object_Type("rev") then
-        -- Revan's Revenge 0.7
+        -- Revan's Revenge 1.1
     end
     if self.enabled_cheats then
         self:enable_cheats()
