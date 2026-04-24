@@ -1,7 +1,7 @@
 require("deepcore/std/class")
 require("deepcore/crossplot/crossplot")
 require("eawx-plugins/options-handler/OptionsHandler")
-require("eawx-util/StoryUtil")
+require("eawx-util/CompatUtil")
 
 ---@class OptionsHandlerPicker
 OptionsHandlerPicker = class()
@@ -39,7 +39,7 @@ function OptionsHandlerPicker:enable_cheats()
         -- X.5+ method
         self.OptionsHandler:enable_cheats()
         self.cheats_applied = true
-        StoryUtil.ShowScreenText("Cheats Enabled", 7, nil, {r = 0, g = 244, b = 0})
+        CompatUtil.ShowScreenText("Cheats Enabled", 7, nil, {r = 0, g = 244, b = 0})
     end
 end
 
@@ -68,7 +68,7 @@ function OptionsHandlerPicker:get_options_handler()
     -- Could not find handler
     self.version = nil
     local message = "Critical Error: Could not find appropriate OptionsHandler for this mod."
-    StoryUtil.ShowScreenText(message, 300, nil, {r = 244, g = 0, b = 0})
+    CompatUtil.ShowScreenText(message, 300, nil, {r = 244, g = 0, b = 0})
     return nil
 end
 
