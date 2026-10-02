@@ -1,0 +1,27 @@
+name: Tests
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Lua 5.1 and LuaRocks
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes lua5.1 liblua5.1-0-dev luarocks
+
+      - name: Install test dependencies
+        run: |
+          sudo luarocks --lua-version=5.1 install busted
+          sudo luarocks --lua-version=5.1 install eaw-abstraction-layer
+
+      - name: Run tests
+        run: busted --lua=lua5.1
