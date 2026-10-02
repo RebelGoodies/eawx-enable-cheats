@@ -35,6 +35,18 @@ This convenience plugin instantiates the appropriate options handler, instead of
 - [Revan's Revenge](https://steamcommunity.com/sharedfiles/filedetails/?id=3417277973)
   **0.5**
 
+## Testing
+
+Tests use Lua 5.1, [Busted](https://olivinelabs.com/busted/), and
+[eaw-abstraction-layer](https://github.com/SvenMarcus/eaw-abstraction-layer).
+
+From the repository root, run the full suite:
+```sh
+busted
+```
+
+See [docs/testing.md](docs/testing.md) for more details.
+
 # License
 
 All **original code** authored in this project is available under the [MIT License](LICENSE).
