@@ -1,0 +1,8 @@
+return {
+    default = {
+        ROOT = {"test"},
+        helper = "test/config.lua",
+        lua = "lua-5.1",
+        pattern = "_spec.lua$"
+    }
+}
