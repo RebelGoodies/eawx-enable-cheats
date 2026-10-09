@@ -74,6 +74,7 @@ end
 function CategoryFilter:update()
     DebugMessage("CategoryFilter update Started")
     self:handle_filter_change()
+    self:sync_prerequisites()
     DebugMessage("CategoryFilter update Finished")
 end
 
@@ -93,6 +94,39 @@ function CategoryFilter:handle_filter_change()
     DebugMessage("CategoryFilter HandleFilterChange Finished")
 end
 
+---Syncs the prerequisites for spawning player dummies.
+---@private
+function CategoryFilter:sync_prerequisites()
+    local selectedPlanet = self.SelectedPlanet
+    if not selectedPlanet or not self.ActiveFilter then
+        self.last_starbase_level = nil
+        self.last_shipyard_level = nil
+        return
+    end
+
+    local object = selectedPlanet:get_game_object()
+    if not TestValid(object) then
+        self.last_starbase_level = nil
+        self.last_shipyard_level = nil
+        return
+    end
+
+    local owner = object.Get_Owner()
+    if owner ~= self.GalacticConquest.HumanPlayer then
+        self.last_starbase_level = nil
+        self.last_shipyard_level = nil
+        return
+    end
+
+    -- The initial station raises starbase level and unlocks shipyard construction and cheats
+    local starbase_level = object.Get_Starbase_Level()
+    -- Completed shipyards raise this perception and unlock the corresponding ship categories
+    local shipyard_level = EvaluatePerception("Shipyard_Level", owner, object)
+    if starbase_level ~= self.last_starbase_level or shipyard_level ~= self.last_shipyard_level then
+        self:spawn_player_category_dummies(self.SelectedPlanet)
+    end
+end
+
 ---@private
 ---@param selectedPlanet Planet
 function CategoryFilter:on_selected_planet_changed(selectedPlanet)
@@ -110,6 +144,10 @@ function CategoryFilter:on_planet_owner_changed(planet)
         return
     end
 
+    if not TestValid(planet:get_game_object()) then
+        return
+    end
+
     if planet:get_owner().Is_Human() then
         if planet == self.SelectedPlanet then
             self:spawn_player_category_dummies(self.SelectedPlanet)
@@ -123,8 +161,14 @@ end
 function CategoryFilter:spawn_player_category_dummies(selectedPlanet)
     DebugMessage("CategoryFilter SpawnCategoryDummy Started")
     self:clear_player_dummies()
+    self.last_starbase_level = nil
+    self.last_shipyard_level = nil
 
     if not selectedPlanet then
+        return
+    end
+
+    if not TestValid(selectedPlanet:get_game_object()) then
         return
     end
 
@@ -138,10 +182,13 @@ function CategoryFilter:spawn_player_category_dummies(selectedPlanet)
 
     local shipyard_level =
         EvaluatePerception("Shipyard_Level", selectedPlanet:get_owner(), selectedPlanet:get_game_object())
+    local starbase_level = selectedPlanet:get_game_object().Get_Starbase_Level()
     local typeList = self:make_dummy_type_table_for_shipyard_level(shipyard_level)
 
     self.current_player_dummies =
         SpawnList(typeList, selectedPlanet:get_game_object(), self.GalacticConquest.HumanPlayer, false, false)
+    self.last_starbase_level = starbase_level
+    self.last_shipyard_level = shipyard_level
     DebugMessage("CategoryFilter SpawnCategoryDummy Finished")
 end
 
