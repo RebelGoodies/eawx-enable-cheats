@@ -26,6 +26,11 @@ This convenience plugin instantiates the appropriate options handler, instead of
 
 **Note:** The `Government` option is not available in FotR 1.5.
 
+### Additional Features/Fixes
+
+- Only edits `options-handler/init.lua` as entry point. (Never edits `OptionsHandler.lua`)
+- After completing a space station, new ship options appear without needing to switch construction tabs. (Patched `CategoryFilter.lua`)
+
 ## Supported Mods
 
 - [Thrawn's Revenge](https://steamcommunity.com/sharedfiles/filedetails/?id=1125571106)
